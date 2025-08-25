@@ -14,16 +14,18 @@
                                     <img src="{{ asset('backend/images/category/' . $category->image) }}" alt="category">
                                     {{ $category->name }}
                                 </a>
-                                <ul class="header__nav-item-category-submenu">
-                                    @foreach ($category->SubCategory as $subcategory)
-                                        <li class="header__category-submenu-item">
-                                            <a href="{{ url('/sub-category/product/' . $subcategory->slug . '/' . $subcategory->id) }}"
-                                                class="header__category-submenu-item-link">
-                                                {{ $subcategory->name }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                                @if ($category->SubCategory && count($category->SubCategory))
+                                    <ul class="header__nav-item-category-submenu">
+                                        @foreach ($category->SubCategory as $subcategory)
+                                            <li class="header__category-submenu-item">
+                                                <a href="{{ url('/sub-category/product/' . $subcategory->slug . '/' . $subcategory->id) }}"
+                                                    class="header__category-submenu-item-link">
+                                                    {{ $subcategory->name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                             </li>
                         @endforeach
                     </ul>
@@ -48,12 +50,14 @@
             </div>
             <div class="categoris-items-wrapper owl-carousel">
                 @foreach ($categories as $category)
-                    <a href="{{ url('/category/product/' . $category->slug . '/' . $category->id) }}" class="categoris-item">
+                    <a href="{{ url('/category/product/' . $category->slug . '/' . $category->id) }}"
+                        class="categoris-item">
                         <img src="{{ asset('backend/images/category/' . $category->image) }}" alt="category" />
                         <h6 class="categoris-name">
                             {{ $category->name }}
                         </h6>
-                        <span class="items-number">{{ App\Models\Product::where('cat_id', $category->id)->count() }} items</span>
+                        <span class="items-number">{{ App\Models\Product::where('cat_id', $category->id)->count() }}
+                            items</span>
                     </a>
                 @endforeach
             </div>
@@ -90,7 +94,7 @@
                 <h1 class="title">
                     Hot Products
                 </h1>
-                <a href="{{url('type-product/hot')}}" class="product-view-all-btn">
+                <a href="{{ url('type-product/hot') }}" class="product-view-all-btn">
                     View All
                 </a>
             </div>
@@ -98,7 +102,7 @@
                 @foreach ($hotProducts as $product)
                     <div class="product__item-outer me-3">
                         <div class="product__item-image-outer">
-                            <a href="{{url('product-details/'.$product->slug)}}" class="product__item-image-inner">
+                            <a href="{{ url('product-details/' . $product->slug) }}" class="product__item-image-inner">
                                 <img src="{{ asset('backend/images/product/' . $product->image) }}" alt="Product Image" />
                             </a>
                             <div class="product__item-add-cart-btn-outer">
@@ -113,7 +117,7 @@
                             </div>
                         </div>
                         <div class="product__item-info-outer">
-                            <a href="{{url('product-details/'.$product->slug)}}" class="product__item-name">
+                            <a href="{{ url('product-details/' . $product->slug) }}" class="product__item-name">
                                 {{ $product->name }}
                             </a>
                             <div class="product__item-price-outer">
@@ -144,7 +148,7 @@
                 <h1 class="title">
                     New Arrival
                 </h1>
-                <a href="{{url('type-product/new')}}" class="product-view-all-btn">
+                <a href="{{ url('type-product/new') }}" class="product-view-all-btn">
                     View All
                 </a>
             </div>
@@ -152,7 +156,7 @@
                 @foreach ($newProducts as $product)
                     <div class="product__item-outer">
                         <div class="product__item-image-outer">
-                            <a href="#" class="product__item-image-inner">
+                            <a href="{{ url('product-details/' . $product->slug) }}" class="product__item-image-inner">
                                 <img src="{{ asset('backend/images/product/' . $product->image) }}" alt="Product Image" />
                             </a>
                             <div class="product__item-add-cart-btn-outer">
@@ -167,7 +171,7 @@
                             </div>
                         </div>
                         <div class="product__item-info-outer">
-                            <a href="#" class="product__item-name">
+                            <a href="{{ url('product-details/' . $product->slug) }}" class="product__item-name">
                                 {{ $product->name }}
                             </a>
                             <div class="product__item-price-outer">
@@ -198,7 +202,7 @@
                 <h1 class="title">
                     Regular Products
                 </h1>
-                <a href="{{url('type-product/reguler')}}" class="product-view-all-btn">
+                <a href="{{ url('type-product/reguler') }}" class="product-view-all-btn">
                     View All
                 </a>
             </div>
@@ -206,8 +210,9 @@
                 @foreach ($regulerProducts as $product)
                     <div class="product__item-outer">
                         <div class="product__item-image-outer">
-                            <a href="#" class="product__item-image-inner">
-                                <img src="{{ asset('backend/images/product/' . $product->image) }}" alt="Product Image" />
+                            <a href="{{ url('product-details/' . $product->slug) }}" class="product__item-image-inner">
+                                <img src="{{ asset('backend/images/product/' . $product->image) }}"
+                                    alt="Product Image" />
                             </a>
                             <div class="product__item-add-cart-btn-outer">
                                 <a href="#" class="product__item-add-cart-btn-inner">
@@ -221,7 +226,7 @@
                             </div>
                         </div>
                         <div class="product__item-info-outer">
-                            <a href="#" class="product__item-name">
+                            <a href="{{ url('product-details/' . $product->slug) }}" class="product__item-name">
                                 {{ $product->name }}
                             </a>
                             <div class="product__item-price-outer">
@@ -252,7 +257,7 @@
                 <h1 class="title">
                     Discount Products
                 </h1>
-                <a href="{{url('type-product/discount')}}" class="product-view-all-btn">
+                <a href="{{ url('type-product/discount') }}" class="product-view-all-btn">
                     View All
                 </a>
             </div>
@@ -260,8 +265,9 @@
                 @foreach ($discountProducts as $product)
                     <div class="product__item-outer">
                         <div class="product__item-image-outer">
-                            <a href="#" class="product__item-image-inner">
-                                <img src="{{ asset('backend/images/product/' . $product->image) }}" alt="Product Image" />
+                            <a href="{{ url('product-details/' . $product->slug) }}" class="product__item-image-inner">
+                                <img src="{{ asset('backend/images/product/' . $product->image) }}"
+                                    alt="Product Image" />
                             </a>
                             <div class="product__item-add-cart-btn-outer">
                                 <a href="#" class="product__item-add-cart-btn-inner">
@@ -275,7 +281,7 @@
                             </div>
                         </div>
                         <div class="product__item-info-outer">
-                            <a href="#" class="product__item-name">
+                            <a href="{{ url('product-details/' . $product->slug) }}" class="product__item-name">
                                 {{ $product->name }}
                             </a>
                             <div class="product__item-price-outer">

@@ -16,6 +16,8 @@ Route::get('/category/product/{slug}/{id}', [FrontendController::class, 'categor
 Route::get('/sub-category/product/{slug}/{id}', [FrontendController::class, 'subCategoryProduct']);
 Route::get('/type-product/{type}', [FrontendController::class, 'typeProduct']);
 Route::get('/product-details/{slug}', [FrontendController::class, 'detailProduct']);
+Route::get('/product-details/add-to-cart/{p_id}', [FrontendController::class, 'detailAddToCart']);
+Route::get('/product/add-to-cart/{p_id}', [FrontendController::class, 'productAddToCart']);
 
 
 //Login Route........

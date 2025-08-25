@@ -43,8 +43,8 @@ class ProductController extends Controller
         $product->buying_price = $request->buying_price;
         $product->reguler_price = $request->reguler_price;
         $product->discount_price = $request->discount_price;
-        $product->description = strip_tags($request->description);
-        $product->p_policy = strip_tags($request->p_policy);
+        $product->description = $request->description;
+        $product->p_policy = $request->p_policy;
 
         $product->save();
 
@@ -123,8 +123,8 @@ class ProductController extends Controller
         $product->buying_price = $request->buying_price;
         $product->reguler_price = $request->reguler_price;
         $product->discount_price = $request->discount_price;
-        $product->description = strip_tags($request->description);
-        $product->p_policy = strip_tags($request->p_policy);
+        $product->description = $request->description;
+        $product->p_policy = $request->p_policy;
 
         $product->save();
 

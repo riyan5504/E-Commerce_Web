@@ -30,4 +30,8 @@ class Product extends Model
     {
         return $this->hasMany(GalleryImage::class, 'p_id', 'id');
     }
+    public function cart()
+    {
+        return $this->hasMany(Cart::class, 'p_id', 'id');
+    }
 }

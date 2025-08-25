@@ -173,11 +173,11 @@
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="description" class="form-label">Product Description</label>
-                                        <textarea name="description" class="form-control" id="summernote" required>{{ $product->description }}</textarea>
+                                        <textarea name="description" class="form-control" id="summernote" required></textarea>
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label for="p_policy" class="form-label">Product Policy</label>
-                                        <textarea name="p_policy" class="form-control" id="summernote1" required>{{ $product->p_policy }}</textarea>
+                                        <textarea name="p_policy" class="form-control" id="summernote1" required></textarea>
                                     </div>
 
                                     <div class="col-12 mb-3">
@@ -230,12 +230,24 @@
 @push('script')
     <script>
         $(document).ready(function() {
-            $('#summernote').summernote();
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#summernote1').summernote();
+            // First initialize empty
+            $('#summernote').summernote({
+                height: 200,
+                callbacks: {
+                    onInit: function() {
+                        $('#summernote').summernote('code', {!! json_encode($product->description) !!});
+                    }
+                }
+            });
+
+            $('#summernote1').summernote({
+                height: 200,
+                callbacks: {
+                    onInit: function() {
+                        $('#summernote1').summernote('code', {!! json_encode($product->p_policy) !!});
+                    }
+                }
+            });
         });
     </script>
     <script>
